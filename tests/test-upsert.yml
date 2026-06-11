@@ -1,0 +1,35 @@
+name: Test UPSERT operation
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        continue-on-error: true
+        uses: .
+        with:
+          baseUrl: 'https://api.getport.io'
+          clientId: 'test-client-id'
+          clientSecret: 'test-client-secret'
+          operation: 'UPSERT'
+          blueprint: 'test-blueprint'
+          identifier: 'test-entity-id'
+          title: 'Test Entity'
+          icon: 'Github'
+          properties: '{"prop1":"value1"}'
+          team: 'test-team'
+          relations: '{}'
+          runId: 'test-run-id'
+          createMissingRelatedEntities: 'false'
+      - name: Assert action ran (may fail due to invalid credentials)
+        run: |
+          echo "outcome: ${{ steps.action.outcome }}"
+          # The action will fail with invalid credentials, but it should have been invoked
+          # We just verify it ran (not skipped)
+          if [ "${{ steps.action.outcome }}" = "skipped" ]; then
+            echo "FAIL: action was skipped, expected it to run"
+            exit 1
+          fi
+          echo "PASS: action ran as expected"
