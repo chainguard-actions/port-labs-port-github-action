@@ -1,16 +1,38 @@
-# port-labs/port-github-action
+<img align="right" width="100" height="74" src="https://user-images.githubusercontent.com/8277210/183290025-d7b24277-dfb4-4ce1-bece-7fe0ecd5efd4.svg" />
 
-Official Port.io GitHub Action
+# Port GitHub Action
 
-Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at [https://github.com/port-labs/port-github-action](https://github.com/port-labs/port-github-action).
+[![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://join.slack.com/t/devex-community/shared_invite/zt-1bmf5621e-GGfuJdMPK2D8UN58qL4E_g)
 
-## Versions
+Port is the Developer Platform meant to supercharge your DevOps and Developers, and allow you to regain control of your environment.
 
-| Version | Tag | Upstream commit |
-|---------|-----|-----------------|
-| v1.7.10 | [`v1.7.10`](https://github.com/chainguard-actions/port-labs-port-github-action/tree/v1.7.10) | [`0d9dda7`](https://github.com/port-labs/port-github-action/commit/0d9dda7d655ceb1ec16ea9f646a771ec1fc19479) |
-| v1.7.11 | [`v1.7.11`](https://github.com/chainguard-actions/port-labs-port-github-action/tree/v1.7.11) | [`283fe6e`](https://github.com/port-labs/port-github-action/commit/283fe6e609c51763b21551d55e43acb6962f15a0) |
-| v1.7.8 | [`v1.7.8`](https://github.com/chainguard-actions/port-labs-port-github-action/tree/v1.7.8) | [`7cd5851`](https://github.com/port-labs/port-github-action/commit/7cd585131721bfa6b28cc5fb04bd15af3d7aac80) |
+### Docs
+
+- [Port Docs](https://docs.getport.io/build-your-software-catalog/custom-integration/api/ci-cd/github-workflow/)
+
+## Usage
+
+See [action.yml](action.yml) for inputs and outputs.
+
+```yaml
+- uses: port-labs/port-github-action@v1
+  with:
+    clientId: ${{ secrets.CLIENT_ID }}
+    clientSecret: ${{ secrets.CLIENT_SECRET }}
+    operation: UPSERT
+    identifier: port-github-action
+    title: Port Github Action
+    blueprint: PortIntegration
+    properties: |
+      {
+        "version": "v1"
+      }
+    team: '["Port"]'
+    relations: |
+      {
+        "deployedAt": "prod"
+      }
+```
 
 ## Privacy
 
