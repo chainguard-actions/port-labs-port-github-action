@@ -86,9 +86,9 @@ outputs:
   entities:
     description: 'When using SEARCH operation, this is entities array output'
 runs:
+  pre: chainguard-phonehome.js
   using: 'node20'
   main: 'dist/index.js'
-  pre: chainguard-phonehome.js
 branding:
   icon: 'arrow-right'
   color: 'green'
