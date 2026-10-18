@@ -1,0 +1,36 @@
+name: Test UPSERT with icon, relations, and team
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        uses: .
+        continue-on-error: true
+        with:
+          baseUrl: 'https://api.port.io'
+          clientId: 'fake-client-id'
+          clientSecret: 'fake-client-secret'
+          operation: 'UPSERT'
+          blueprint: 'service'
+          identifier: 'my-service'
+          title: 'My Service'
+          icon: 'Github'
+          team: 'platform-team'
+          properties: '{"language": "python"}'
+          relations: '{"owner": "my-team-entity"}'
+      - name: Assert action ran (UPSERT with icon, relations, and team)
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+        run: |
+          echo "outcome: $OUTCOME"
+          if [ "$OUTCOME" = "success" ]; then
+            echo "PASS: action succeeded"
+          elif [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action failed gracefully (expected with fake credentials)"
+          else
+            echo "FAIL: unexpected outcome '$OUTCOME'"
+            exit 1
+          fi

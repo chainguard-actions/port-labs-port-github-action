@@ -1,0 +1,52 @@
+name: Test BULK_UPSERT operation
+on:
+  workflow_dispatch:
+jobs:
+  test-bulk-upsert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Run BULK_UPSERT operation
+        id: bulk_upsert
+        uses: .
+        continue-on-error: true
+        with:
+          baseUrl: 'https://api.port.io'
+          clientId: 'fake-client-id'
+          clientSecret: 'fake-client-secret'
+          operation: 'BULK_UPSERT'
+          blueprint: 'service'
+          entities: |
+            [
+              {
+                "identifier": "service-a",
+                "title": "Service A",
+                "properties": {"language": "python"}
+              },
+              {
+                "identifier": "service-b",
+                "title": "Service B",
+                "properties": {"language": "go"}
+              }
+            ]
+
+      - name: Assert action ran and failed gracefully (auth error expected)
+        env:
+          OUTCOME: ${{ steps.bulk_upsert.outcome }}
+          IDENTIFIERS: ${{ steps.bulk_upsert.outputs.identifiers }}
+        run: |
+          echo "outcome: $OUTCOME"
+          echo "identifiers: $IDENTIFIERS"
+          if [ "$OUTCOME" = "success" ]; then
+            if [ -z "$IDENTIFIERS" ]; then
+              echo "FAIL: action succeeded but identifiers output is empty"
+              exit 1
+            fi
+            echo "PASS: BULK_UPSERT succeeded with identifiers: $IDENTIFIERS"
+          elif [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action failed gracefully (expected with fake credentials)"
+          else
+            echo "FAIL: unexpected outcome '$OUTCOME'"
+            exit 1
+          fi

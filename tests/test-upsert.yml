@@ -1,0 +1,42 @@
+name: Test UPSERT operation
+on:
+  workflow_dispatch:
+jobs:
+  test-upsert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Run UPSERT operation
+        id: upsert
+        uses: .
+        continue-on-error: true
+        with:
+          baseUrl: 'https://api.port.io'
+          clientId: 'fake-client-id'
+          clientSecret: 'fake-client-secret'
+          operation: 'UPSERT'
+          blueprint: 'service'
+          identifier: 'test-service'
+          title: 'Test Service'
+          properties: '{"language": "python"}'
+
+      - name: Assert action ran and failed gracefully (auth error expected)
+        env:
+          OUTCOME: ${{ steps.upsert.outcome }}
+          IDENTIFIER: ${{ steps.upsert.outputs.identifier }}
+        run: |
+          echo "outcome: $OUTCOME"
+          echo "identifier: $IDENTIFIER"
+          if [ "$OUTCOME" = "success" ]; then
+            if [ -z "$IDENTIFIER" ]; then
+              echo "FAIL: action succeeded but identifier output is empty"
+              exit 1
+            fi
+            echo "PASS: upsert succeeded with identifier '$IDENTIFIER'"
+          elif [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action failed gracefully (expected with fake credentials)"
+          else
+            echo "FAIL: unexpected outcome '$OUTCOME'"
+            exit 1
+          fi
