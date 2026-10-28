@@ -6,13 +6,13 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 
 ## Versions
 
-| Version | Tag | Upstream commit |
-|---------|-----|-----------------|
-| v1.7.10 | [`v1.7.10`](https://github.com/chainguard-actions/port-labs-port-github-action/tree/v1.7.10) | [`0d9dda7`](https://github.com/port-labs/port-github-action/commit/0d9dda7d655ceb1ec16ea9f646a771ec1fc19479) |
-| v1.7.11 | [`v1.7.11`](https://github.com/chainguard-actions/port-labs-port-github-action/tree/v1.7.11) | [`283fe6e`](https://github.com/port-labs/port-github-action/commit/283fe6e609c51763b21551d55e43acb6962f15a0) |
-| v1.7.12 | [`v1.7.12`](https://github.com/chainguard-actions/port-labs-port-github-action/tree/v1.7.12) | [`a230604`](https://github.com/port-labs/port-github-action/commit/a230604a39ea11eda597c3ddf616336ff90d40d0) |
-| v1.7.8 | [`v1.7.8`](https://github.com/chainguard-actions/port-labs-port-github-action/tree/v1.7.8) | [`7cd5851`](https://github.com/port-labs/port-github-action/commit/7cd585131721bfa6b28cc5fb04bd15af3d7aac80) |
-| v1.7.9 | [`v1.7.9`](https://github.com/chainguard-actions/port-labs-port-github-action/tree/v1.7.9) | [`1ae6fb3`](https://github.com/port-labs/port-github-action/commit/1ae6fb3258671f3d914dea84a01a47d995085443) |
+| Version | Tag | Upstream commit | Hardening report |
+|---------|-----|-----------------|------------------|
+| v1.7.10 | [`v1.7.10`](https://github.com/chainguard-actions/port-labs-port-github-action/tree/v1.7.10) | [`0d9dda7`](https://github.com/port-labs/port-github-action/commit/0d9dda7d655ceb1ec16ea9f646a771ec1fc19479) | [`HARDENING.md`](https://github.com/chainguard-actions/port-labs-port-github-action/blob/v1.7.10/HARDENING.md) |
+| v1.7.11 | [`v1.7.11`](https://github.com/chainguard-actions/port-labs-port-github-action/tree/v1.7.11) | [`283fe6e`](https://github.com/port-labs/port-github-action/commit/283fe6e609c51763b21551d55e43acb6962f15a0) | [`HARDENING.md`](https://github.com/chainguard-actions/port-labs-port-github-action/blob/v1.7.11/HARDENING.md) |
+| v1.7.12 | [`v1.7.12`](https://github.com/chainguard-actions/port-labs-port-github-action/tree/v1.7.12) | [`a230604`](https://github.com/port-labs/port-github-action/commit/a230604a39ea11eda597c3ddf616336ff90d40d0) | [`HARDENING.md`](https://github.com/chainguard-actions/port-labs-port-github-action/blob/v1.7.12/HARDENING.md) |
+| v1.7.8 | [`v1.7.8`](https://github.com/chainguard-actions/port-labs-port-github-action/tree/v1.7.8) | [`7cd5851`](https://github.com/port-labs/port-github-action/commit/7cd585131721bfa6b28cc5fb04bd15af3d7aac80) | [`HARDENING.md`](https://github.com/chainguard-actions/port-labs-port-github-action/blob/v1.7.8/HARDENING.md) |
+| v1.7.9 | [`v1.7.9`](https://github.com/chainguard-actions/port-labs-port-github-action/tree/v1.7.9) | [`1ae6fb3`](https://github.com/port-labs/port-github-action/commit/1ae6fb3258671f3d914dea84a01a47d995085443) | [`HARDENING.md`](https://github.com/chainguard-actions/port-labs-port-github-action/blob/v1.7.9/HARDENING.md) |
 
 ## Privacy
 
